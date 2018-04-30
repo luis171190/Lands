@@ -47,7 +47,6 @@
             this.Email = "juan@gmail.com";
             this.Password = "1234";
 
-            // http://restcountries.es/rest/v2/all
         }
         #endregion
 
