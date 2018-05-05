@@ -7,16 +7,10 @@
     x:Class="Lands.Views.MenuPage"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
     BackgroundColor="Navy"
-    Icon="ic_action_menu"
     Title="{i18n:Translate Menu}">
     <ContentPage.Content>
         <StackLayout
             Padding="5,20,5,5">
-            <controls:CircleImage 
-                Aspect="AspectFill"
-                HeightRequest="150"
-                Source="{Binding User.ImageFullPath}">
-            </controls:CircleImage>
             <Label
                 FontSize="Large"
                 FontAttributes="Bold"
