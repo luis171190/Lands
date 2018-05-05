@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
+    using Lands.Helpers;
     using Models;
     using Services;
     using Xamarin.Forms;
@@ -65,9 +66,9 @@
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     connection.Message,
-                    "Accept");
+                    Languages.Accept);
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
@@ -81,9 +82,9 @@
             {
                 this.IsRefreshing = false;
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
