@@ -1,6 +1,7 @@
 ﻿namespace Lands.Domain
 {
     using Newtonsoft.Json;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,6 +33,17 @@
         [Display(Name = "Image")]
         public string ImagePath { get; set; }
 
+        public int UserTypeId { get; set; }
+
+        [JsonIgnore]
+        public virtual UserType UserType { get; set; }
+
+        [NotMapped]
+        public byte[] ImageArray { get; set; }
+
+        [NotMapped]
+        public string Password { get; set; }
+
         [Display(Name = "Image")]
         public string ImageFullPath
         {
@@ -56,5 +68,6 @@
                 return string.Format("{0} {1}", this.FirstName, this.LastName);
             }
         }
+
     }
 }

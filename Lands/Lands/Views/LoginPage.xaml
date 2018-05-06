@@ -10,7 +10,7 @@
         <ScrollView
             BindingContext="{Binding Login}">
             <StackLayout
-                Padding="5,20,5,5">
+                Padding="5">
                 <Image
                     Source="onu"
                     WidthRequest="200">
@@ -103,18 +103,18 @@
                     VerticalOptions="EndAndExpand">
                     <Image
                         Source="facebook_logo"
-                        WidthRequest="100">
+                        WidthRequest="85">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding LoginFacebookComand}"/>
                         </Image.GestureRecognizers>
                     </Image>
                     <Image
                         Source="twitter_logo"
-                        WidthRequest="100">
+                        WidthRequest="65">
                     </Image>
                     <Image
                         Source="instagram_logo"
-                        WidthRequest="85">
+                        WidthRequest="65">
                     </Image>
                 </StackLayout>
             </StackLayout>
