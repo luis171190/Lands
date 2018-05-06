@@ -27,21 +27,14 @@
 
         private void Navigate()
         {
-            App.Master.IsPresented = false;
-
             if (this.PageName == "LoginPage")
             {
-                Settings.IsRemembered = "false";
+                Settings.Token = string.Empty;
+                Settings.TokenType = string.Empty;
                 var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.Token = null;
-                mainViewModel.User = null;
-                Application.Current.MainPage = new NavigationPage(
-                    new LoginPage());
-            }
-            else if (this.PageName == "MyProfilePage")
-            {
-                MainViewModel.GetInstance().MyProfile = new MyProfileViewModel();
-                App.Navigator.PushAsync(new MyProfilePage());
+                mainViewModel.Token = string.Empty;
+                mainViewModel.TokenType = string.Empty;
+                Application.Current.MainPage = new LoginPage();
             }
         }
         #endregion
