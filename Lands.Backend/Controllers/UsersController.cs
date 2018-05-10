@@ -59,7 +59,7 @@
         //    return View(view);
         //}
 
-        private User ToUser(UserView view)
+        private User ToUser(Models.UserView view)
         {
             return new User
             {
