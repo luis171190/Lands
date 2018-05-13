@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using Lands.Helpers;
     using Models;
+    using Domain;
 
     public class MainViewModel
     {
@@ -13,6 +14,7 @@
         public string Token { get; set; }
         public string TokenType { get; set; }
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+        public User User { get; set; }
         #endregion
 
         #region ViewModels

@@ -26,9 +26,6 @@
                     Text="{i18n:Translate ChangeImage}" 
                     TextColor="Black">
                 </Label>
-                <ActivityIndicator
-                    IsRunning="{Binding IsRunning, Mode=TwoWay}">
-                </ActivityIndicator>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

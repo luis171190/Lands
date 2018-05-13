@@ -11,6 +11,16 @@
     <ContentPage.Content>
         <StackLayout
             Padding="5,20,5,5">
+            <Image
+                Source="onu"
+                WidthRequest="100">
+            </Image>
+            <Label
+                Text="{Binding User.FulName, StringFormat='Hola: {0}'}"
+                TextColor="White"
+                FontSize="Large"
+                FontAttributes="Bold">
+            </Label>
             <Label
                 FontSize="Large"
                 FontAttributes="Bold"
