@@ -347,10 +347,10 @@
         }
 
         public async Task<User> GetUserByEmail(
-    string urlBase,
-    string servicePrefix,
-    string controller,
-    string email)
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            string email)
         {
             try
             {
