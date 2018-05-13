@@ -1,20 +1,25 @@
 ﻿namespace Lands.ViewModels
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using Lands.Helpers;
     using Models;
-    using Domain;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
-    public class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
+        #region Attributes
+        private UserLocal user;
+        #endregion
+
         #region Properties
         public List<Land> LandsList { get; set; }
-        public string Token { get; set; }
-        public string TokenType { get; set; }
+        public TokenResponse Token { get; set; }
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
-        public UserLocal User { get; set; }
+        public UserLocal User
+        {
+            get { return this.user; }
+            set { SetValue(ref this.user, value); }
+        }
         #endregion
 
         #region ViewModels
@@ -23,6 +28,7 @@
         public LandViewModel Land { get; set; }
         public RegisterViewModel Register { get; set; }
         public MyProfileViewModel MyProfile { get; set; }
+        public ChangePasswordViewModel ChangePassword { get; set; }
 
         #endregion
 

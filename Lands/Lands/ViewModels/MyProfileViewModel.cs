@@ -64,19 +64,19 @@
         #endregion
 
         #region Commands
-        //public ICommand ChangePasswordCommand
-        //{
-        //    get
-        //    {
-        //        return new RelayCommand(ChangePassword);
-        //    }
-        //}
+        public ICommand ChangePasswordCommand
+        {
+            get
+            {
+                return new RelayCommand(ChangePassword);
+            }
+        }
 
-        //private async void ChangePassword()
-        //{
-        //    MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
-        //    await App.Navigator.PushAsync(new ChangePasswordPage());
-        //}
+        private async void ChangePassword()
+        {
+            MainViewModel.GetInstance().ChangePassword = new ChangePasswordViewModel();
+            await App.Navigator.PushAsync(new ChangePasswordPage());
+        }
 
         public ICommand ChangeImageCommand
         {
@@ -219,8 +219,8 @@
                 apiSecurity,
                 "/api",
                 "/Users",
-                MainViewModel.GetInstance().TokenType,
-                MainViewModel.GetInstance().Token,
+                MainViewModel.GetInstance().Token.TokenType,
+                MainViewModel.GetInstance().Token.AccessToken,
                 userDomain);
 
             if (!response.IsSuccess)
@@ -234,17 +234,17 @@
                 return;
             }
 
-            //var userApi = await this.apiService.GetUserByEmail(
-            //    apiSecurity,
-            //    "/api",
-            //    "/Users/GetUserByEmail",
-            //    MainViewModel.GetInstance().Token.TokenType,
-            //    MainViewModel.GetInstance().Token.AccessToken,
-            //    this.User.Email);
-            //var userLocal = Converter.ToUserLocal(userApi);
+            var userApi = await this.apiService.GetUserByEmail(
+                apiSecurity,
+                "/api",
+                "/Users/GetUserByEmail",
+                MainViewModel.GetInstance().Token.TokenType,
+                MainViewModel.GetInstance().Token.AccessToken,
+                this.User.Email);
+            var userLocal = Converter.ToUserLocal(userApi);
 
-            //MainViewModel.GetInstance().User = userLocal;
-            //this.dataService.Update(userLocal);
+            MainViewModel.GetInstance().User = userLocal;
+            this.dataService.Update(userLocal);
 
             this.IsRunning = false;
             this.IsEnabled = true;

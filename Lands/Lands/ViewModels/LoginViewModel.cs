@@ -123,7 +123,7 @@
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    token.ErrorDescription,
+                    Languages.LoginError,
                     Languages.Accept);
                 this.Password = string.Empty;
                 return;
@@ -134,21 +134,28 @@
                 apiSecurity,
                 "/api",
                 "/Users/GetUserByEmail",
+                token.TokenType,
+                token.AccessToken,
                 this.Email);
 
             var userLocal = Converter.ToUserLocal(user);
+            userLocal.Password = this.Password;
 
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.Token = token.AccessToken;
-            mainViewModel.TokenType = token.TokenType;
+            mainViewModel.Token = token;
             mainViewModel.User = userLocal;
 
             if(this.IsRemembered)
             {
-                Settings.Token = token.AccessToken;
-                Settings.TokenType = token.TokenType;
-                this.dataService.DeleteAllAndInsert(userLocal);
+                Settings.IsRemembered = "true";
             }
+            else
+            {
+                Settings.IsRemembered = "false";
+            }
+
+            this.dataService.DeleteAllAndInsert(userLocal);
+            this.dataService.DeleteAllAndInsert(token);
 
             mainViewModel.Lands = new LandsViewModel();
             Application.Current.MainPage = new MasterPage();

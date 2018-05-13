@@ -10,6 +10,7 @@
     using Newtonsoft.Json;
     using Plugin.Connectivity;
     using Domain;
+    using Lands.Helpers;
 
     public class ApiService
     {
@@ -20,7 +21,7 @@
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Please turn on your internet settings.",
+                    Message = Languages.ConnectionError1,
                 };
             }
 
@@ -31,14 +32,13 @@
                 return new Response
                 {
                     IsSuccess = false,
-                    Message = "Check you internet connection.",
+                    Message = Languages.ConnectionError1,
                 };
             }
 
             return new Response
             {
                 IsSuccess = true,
-                Message = "Ok",
             };
         }
 
@@ -350,6 +350,8 @@
             string urlBase,
             string servicePrefix,
             string controller,
+            string tokenType,
+            string accessToken,
             string email)
         {
             try
@@ -365,6 +367,8 @@
                     Encoding.UTF8,
                     "application/json");
                 var client = new HttpClient();
+                client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue(tokenType, accessToken);
                 client.BaseAddress = new Uri(urlBase);
                 var url = string.Format("{0}{1}", servicePrefix, controller);
                 var response = await client.PostAsync(url, content);

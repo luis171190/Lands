@@ -6,6 +6,7 @@
     using ViewModels;
     using Services;
     using Models;
+    using System;
 
     public partial class App : Application
 	{
@@ -28,20 +29,29 @@
         {
             InitializeComponent();
 
-            if(string.IsNullOrEmpty(Settings.Token))
-            {
-                this.MainPage = new NavigationPage(new LoginPage());
-            }
-            else
+            if (Settings.IsRemembered == "true")
             {
                 var dataService = new DataService();
-                var user = dataService.First<UserLocal>(false);
-                var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.Token = Settings.Token;
-                mainViewModel.TokenType = Settings.TokenType;
-                mainViewModel.User = user;
-                mainViewModel.Lands = new LandsViewModel();
-                this.MainPage = new MasterPage();
+                var token = dataService.First<TokenResponse>(false);
+
+                if (token != null && token.Expires > DateTime.Now)
+                {
+                    var user = dataService.First<UserLocal>(false);
+                    var mainViewModel = MainViewModel.GetInstance();
+                    mainViewModel.Token = token;
+                    mainViewModel.User = user;
+                    mainViewModel.Lands = new LandsViewModel();
+                    this.MainPage = new MasterPage();
+
+                }
+                else
+                {
+                    this.MainPage = new NavigationPage(new LoginPage());
+                }
+            }            
+            else
+            {
+                this.MainPage = new NavigationPage(new LoginPage());
             }
         }
         #endregion        
