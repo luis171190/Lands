@@ -7,20 +7,16 @@
     x:Class="Lands.Views.MenuPage"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
     BackgroundColor="Navy"
+    Icon="ic_action_menu"
     Title="{i18n:Translate Menu}">
     <ContentPage.Content>
         <StackLayout
             Padding="5,20,5,5">
-            <Image
-                Source="onu"
-                WidthRequest="100">
-            </Image>
-            <Label
-                Text="{Binding User.FulName, StringFormat='Hola: {0}'}"
-                TextColor="White"
-                FontSize="Large"
-                FontAttributes="Bold">
-            </Label>
+            <controls:CircleImage 
+                Aspect="AspectFill"
+                HeightRequest="150"
+                Source="{Binding User.ImageFullPath}">
+            </controls:CircleImage>
             <Label
                 FontSize="Large"
                 FontAttributes="Bold"
