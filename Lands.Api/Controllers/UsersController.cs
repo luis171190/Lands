@@ -13,8 +13,11 @@
     using System.Web.Http.Description;
     using Domain;
     using Helpers;
+    using Models;
     using System.IO;
     using Newtonsoft.Json.Linq;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     [RoutePrefix("api/Users")]
     public class UsersController : ApiController
@@ -53,6 +56,45 @@
             }
 
             return Ok(user);
+        }
+        
+        [HttpPost]
+        [Authorize]
+        [Route("ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(JObject form)
+        {
+            var email = string.Empty;
+            var currentPassword = string.Empty;
+            var newPassword = string.Empty;
+            dynamic jsonObject = form;
+
+            try
+            {
+                email = jsonObject.Email.Value;
+                currentPassword = jsonObject.CurrentPassword.Value;
+                newPassword = jsonObject.NewPassword.Value;
+            }
+            catch
+            {
+                return BadRequest("Incorrect call");
+            }
+
+            var userContext = new ApplicationDbContext();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(userContext));
+            var userASP = userManager.FindByEmail(email);
+
+            if (userASP == null)
+            {
+                return BadRequest("Incorrect call");
+            }
+
+            var response = await userManager.ChangePasswordAsync(userASP.Id, currentPassword, newPassword);
+            if (!response.Succeeded)
+            {
+                return BadRequest(response.Errors.FirstOrDefault());
+            }
+
+            return Ok("ok");
         }
 
         // PUT: api/Users/5
