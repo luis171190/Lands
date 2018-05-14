@@ -360,4 +360,7 @@
   <data name="ErrorChangingPassword" xml:space="preserve">
     <value>La contraseña no pudo ser cambiada, por favor intenta más tarde.</value>
   </data>
+  <data name="Plasewait" xml:space="preserve">
+    <value>Por favor, espere.</value>
+  </data>
 </root>

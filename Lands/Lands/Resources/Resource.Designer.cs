@@ -655,6 +655,15 @@ namespace Lands.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Plase wait....
+        /// </summary>
+        public static string Plasewait {
+            get {
+                return ResourceManager.GetString("Plasewait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Population:.
         /// </summary>
         public static string Population {

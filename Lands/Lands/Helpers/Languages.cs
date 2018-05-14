@@ -361,5 +361,11 @@
         {
             get { return Resource.ErrorChangingPassword; }
         }
+
+        public static string Plasewait
+        {
+            get { return Resource.Plasewait; }
+        }
+
     }
 }
